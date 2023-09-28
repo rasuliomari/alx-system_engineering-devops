@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# let’s sort the data so you can get a better idea of what is going on.
+
+myfile="apache-access.log"
+awk -F' ' '{ print $1, $9}' $myfile | sort | uniq -c|sort -nr
