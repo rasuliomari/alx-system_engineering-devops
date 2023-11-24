@@ -1,3 +1,10 @@
+#
+
+file { '/tmp':
+  ensure => 'directory',
+}
+
+#
 
 file { '/tmp/school':
     ensure  => 'file',
