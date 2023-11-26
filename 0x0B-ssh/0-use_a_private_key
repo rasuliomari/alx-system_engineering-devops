@@ -1,4 +1,8 @@
-#!/bin/bash/env bash
+#!/usr/bin/env bash
+# This script connects to a server using SSH with a private key
 
+# Server details
+server_ip="34.201.165.49"  
 
-ssh -i ~/.ssh/school ubuntu@34.201.165.49
+# SSH connection using the private key
+ssh -i ~/.ssh/school ubuntu@$server_ip
