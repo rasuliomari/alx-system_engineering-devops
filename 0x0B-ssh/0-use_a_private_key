@@ -2,7 +2,7 @@
 
 
 # Specify the server IP address or hostname
-server_ip="8.8.8.8"
+server_ip="34.201.165.49"
 
 # Path to the private key file
 private_key_path="~/.ssh/school"
