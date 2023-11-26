@@ -1,12 +1,11 @@
 #!/bin/bash/env bash
 
 
+# Specify the server IP address or hostname
+server_ip="8.8.8.8"
+
 # Path to the private key file
 private_key_path="~/.ssh/school"
 
-#server details
-server_ip = "34.201.165.49"
-
 # SSH command with single-character flags
-ssh -i ~/.ssh/school ubuntu@$server_ip
-
+ssh -i "$private_key_path" ubuntu@$server_ip
