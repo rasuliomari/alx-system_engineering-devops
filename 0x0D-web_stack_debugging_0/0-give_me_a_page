@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# Start the Apache web server with elevated privileges
+sudo service apache2 start
