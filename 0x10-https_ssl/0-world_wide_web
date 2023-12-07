@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
-# Shows information about subdomains.
+# This checks for subdomain and DNS records
 
-domain_information() {
-    local domain="$1"
-    local subdomain="$2"
-    local line
-    line=$(dig "$subdomain"."$domain" | awk '/ANSWER SECTION:/ {getline; print; getline; print}')
-    echo "$subdomain $line" | awk '{printf "The subdomain %s is a %s record and points to %s\n", $1, $2, $3}'
-}
+# Store the second argument (list of subdomains) in the 'sdms' variable
+sdms=$2
 
-if [ "$#" -eq 1 ]; then
-    domain_information "$1" "www"
-    domain_information "$1" "lb-01"
-    domain_information "$1" "web-01"
-    domain_information "$1" "web-02"
-elif [ "$#" -eq 2 ]; then
-    domain_information "$1" "$2"
+# Check if there is only one argument provided (the domain)
+if [ "$#" -eq 1 ]
+then
+    # If only the domain is provided, set 'sdms' to the default list of subdomains
+    sdms="www lb-01 web-01 web-02"
 fi
+
+# Loop through each subdomain specified in 'sdms'
+for sdm in $sdms
+do
+    # Use 'dig' to query DNS records for the current subdomain and domain
+    # 'grep' and 'awk' are used to extract the relevant information
+    output=$(dig "$sdm.$1" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '{ print "is a " $4 " record and points to " $5}')
+    # Print the information about the current subdomain
+    echo "The subdomain $sdm $output"
+done
