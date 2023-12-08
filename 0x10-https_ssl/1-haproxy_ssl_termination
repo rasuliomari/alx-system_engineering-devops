@@ -33,7 +33,7 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-        frontend  rasuliomari_frontend
+        frontend  http_in
                 bind *:80
                 bind *:443 ssl crt /etc/letsencrypt/live/www.rasuli.tech/www.rasuli.tech.pem
                 mode http
