@@ -36,25 +36,9 @@ defaults
         frontend  rasuliomari_frontend
                 bind *:80
                 bind *:443 ssl crt /etc/letsencrypt/live/www.rasuli.tech/www.rasuli.tech.pem
-                http-request redirect scheme https unless { ssl_fc }
-                http-request set-header X-Forwarded-Proto https
-                default_backend rasuliomari_back_end
-
-        backend rasuliomari_backend
+                mode http
+                default_backend server
+        backend server
                 balance roundrobin
                 server 295399-web-01 100.25.134.0:80 check
                 server 295399-web-02 34.232.70.228:80 check
-
-
-
-
-frontend  rasuliomari_frontend
-        bind *:80
-        mode http
-        default_backend rasuliomari_backend
-backend rasuliomari_backend
-        balance roundrobin
-        server 295399-web-01 100.25.134.0:80 check
-        server 295399-web-02 34.232.70.228:80 check
-
-
